@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Glass+Antiqua&family=Josefin+Slab&family=Luckiest+Guy&family=Poppins:wght@300&family=Roboto+Condensed&family=Roboto+Slab:wght@500&family=Saira:wght@300&family=Titillium+Web:wght@300&family=Wellfleet&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hero">
+        <div class="main">
+            <h1>Number Nexus: Navigate the Digits</h1>
+            <div class="top">
+                <div class="nums">
+                    <ul>
+                        <li class="num">x</li>
+                        <li class="num">y</li>
+                        <li class="num">z</li>
+                        <li class="num">m</li>
+                    </ul>
+                </div>
+                <div class="target">
+                    <h1 id="target-num">XY</h1>
+                </div>
+                <div class="ops">
+                    <ul>
+                        <li class="opers">+</li>
+                        <li class="opers">-</li>
+                        <li class="opers">*</li>
+                        <li class="opers">/</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="work">
+                <ul class="work-elm-ul">
+
+                </ul>
+            </div>
+
+            <div class="bottom">
+                <h1 id="answer-main">= </h1>
+                <div class="btns">
+                    <button type="button" id="clear">Clear</button>
+                    <button type="button" id="next">Next Level</button>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 id="level">LEVEL: <span id="lvl">1</span></h2>
+
+        <h3 id="warning">** This game doesn't obey the BODMAS/ BIDMAS rule.</h3>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
