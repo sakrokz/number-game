@@ -231,14 +231,8 @@ function calculateScore() {
     // Calculate time bonus 
     let timeBonus = Math.max(0, initialTimeBonus - timeTaken * timeBonusDecreaseRate);
 
-    console.log("timeTaken: ", timeTaken);
-    console.log("timeBonus: ", timeBonus);
-
     // Calculate the total score
-    const totalScore = levelPoints + timeBonus;
-
-    console.log("levelPoints: ", levelPoints);
-    console.log("totalScore: ", totalScore);
+    const totalScore = levelPoints + parseFloat(timeBonus.toFixed(2));
 
     return totalScore;
 }
