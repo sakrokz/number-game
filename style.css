@@ -84,8 +84,8 @@
 }
 
 .nums ul li:hover, .ops ul li:hover{
-    background-color: #fff;
-    color: #19B0EC;
+    background-color: #fff !important;
+    color: #19B0EC !important;
     transform: scale(1.1);
 }
 
