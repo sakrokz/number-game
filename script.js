@@ -1,4 +1,6 @@
 
+import './confetti.js'
+
 const hero = document.querySelector('.hero')
 const nums = document.querySelectorAll('.num')
 const work = document.querySelector('.work-elm-ul')
@@ -8,6 +10,11 @@ const answerMainElement = document.getElementById('answer-main');
 const clearBtn = document.getElementById('clear')
 const nextBtn = document.getElementById('next')
 const level = document.getElementById('lvl')
+const howBtn = document.getElementById('how')
+const howMain = document.querySelector('.how-to')
+const playMain = document.querySelector('.main')
+const cong = document.getElementById('congg')
+const scoreElm = document.getElementById('scr')
 
 // animated gradient background
 
@@ -25,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     changeBackground(); // Start the animation
 });
+
+//score time initializer
+let startTime = new Date().getTime()
 
 
 // onclick appear in work area
@@ -74,11 +84,8 @@ function shuffleArray(array) {
 
 // real time calculations
 
-// result variable for showing realtime results
-let result
-
 // limit for generating random numbers, increases on level increase
-let limit = 5
+let limit = 6
 
 // Function to generate a target number based on patterns
 function generateTargetNumber() {
@@ -209,11 +216,40 @@ function generateTargetNumber() {
 
 }
 
-let targetNumber = generateTargetNumber()
+// score function
 
+const initialTimeBonus = 100; 
+const timeBonusDecreaseRate = 0.002;
+
+function calculateScore() {
+    const endTime = new Date().getTime();
+    const timeTaken = endTime - startTime;
+
+    // Assign points based on the level number 
+    const levelPoints = lvlNum * 100;
+
+    // Calculate time bonus 
+    let timeBonus = Math.max(0, initialTimeBonus - timeTaken * timeBonusDecreaseRate);
+
+    console.log("timeTaken: ", timeTaken);
+    console.log("timeBonus: ", timeBonus);
+
+    // Calculate the total score
+    const totalScore = levelPoints + timeBonus;
+
+    console.log("levelPoints: ", levelPoints);
+    console.log("totalScore: ", totalScore);
+
+    return totalScore;
+}
+
+
+
+let targetNumber = generateTargetNumber()
 let currentExpression = '';
 
 function handleButtonClick(value) {
+
     currentExpression += value;
     updateDisplay();
 }
@@ -234,7 +270,18 @@ function updateDisplay() {
             nextBtn.style.backgroundColor = "#1845ca";
             nextBtn.style.opacity = "1";
             nextBtn.style.pointerEvents = "auto";
-            window.alert("Congrats, You can advance to the next level.");
+            setTimeout(() => {
+                startConfetti()
+                // congrats message
+                cong.style.animation = "hb .5s ease forwards"
+            }, 300)
+            setTimeout(() => {
+                stopConfetti()
+            }, 3000);
+
+            //score calculater
+            const currentScore = calculateScore()
+            scoreElm.textContent = currentScore
 
         } else {
             // If the answer is incorrect, reset the button styles
@@ -289,7 +336,10 @@ function nextBtnCall(){
     lvlNum += 1
     level.textContent = lvlNum
     
-    limit += 5
+    limit += 3
+
+    //set new startTime
+    startTime = new Date().getTime()
 
     // change styles of next button to disabled
 
@@ -298,7 +348,6 @@ function nextBtnCall(){
     nextBtn.style.pointerEvents = "none";
 
     targetNumber = generateTargetNumber()
-    console.log(targetNumber)
 
     //reset nums and opers to default positions
 
@@ -315,5 +364,19 @@ function nextBtnCall(){
         answerMainElement.textContent = '= '
         currentExpression = ''
     }
+
+    //congrats display to invis
+
+    cong.style.animation = "none"
+
 }
+
+//HOW to PLAYYYYYYYYYY
+
+howBtn.addEventListener('click', () => {
+    howMain.classList.toggle('how-active')
+    playMain.classList.toggle('play-active')
+    howBtn.classList.toggle('how-btn-active')
+})
+
 
